@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Several Destiny Ships</title>
+    <meta name="description" content="Several Destiny Ships">
+    <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@^v3.12.x/dist/aframe-extras.min.js" data-angle="aframe-extras"></script>    
+    <script>
+      window.DESTINYMODELCONFIG = {
+        d1Manifest: 'https://lowlidev.com.au/destiny/api/gearasset/$itemHash',
+        d2Manifest: 'https://lowlidev.com.au/destiny/api/gearasset/$itemHash?destiny2'
+      }
+      switch (window.location.hostname) {
+        case 'dev.guardian.theater':
+          window.DESTINYMODELCONFIG.apiKey = '4da0bc9d76774c5696ea2703b129a2cd';
+          break;
+        case 'chrisfried.github.io':
+          window.DESTINYMODELCONFIG.apiKey = '83c21174d7ed4292884fed250a383fee';
+          break;
+        default:
+          window.DESTINYMODELCONFIG.apiKey = '';
+      }
+    </script>
+    <script src="https://unpkg.com/aframe-destiny-model-component@^1.0.x/dist/aframe-destiny-model-component.min.js" data-angle="aframe-destiny-model-component"></script>      
+    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>    
+  </head>
+  <body>
+    <a-scene environment="skyType: atmosphere; skyColor: #88c; horizonColor: #ddd; lighting: none; groundColor: #0e0e0e; groundColor2: #2d2d2d; gridColor: #334a4d; preset: starry">
+      <a-box class="destiny-item" static-body position="0 .5 -.75" color="#111"></a-box>      
+
+      <!-- Ground. -->
+      <a-plane static-body rotation="-90 0 0" position="0 -.1 0" height="64" width="64"></a-plane>
+
+      <!--Tracked controls. -->
+      <a-entity static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .destiny-model" grab hand-controls="left"></a-entity>
+      <a-entity static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .destiny-model" grab hand-controls="right"></a-entity>
+      
+      <a-entity light="type: ambient; color: #fff"></a-entity>
+
+    </a-scene>
+    <script>
+      var sceneEl = document.querySelector('a-scene');
+      var ships = [
+        { game: 'destiny', itemHash: 1539265113 },
+        
+        { game: 'destiny', itemHash: 2171840884 },
+        { game: 'destiny', itemHash: 2171840885 },
+        { game: 'destiny', itemHash: 2171840886 },
+        { game: 'destiny', itemHash: 2171840887 },
+        { game: 'destiny', itemHash: 2191224114 },
+        { game: 'destiny', itemHash: 2191224115 },
+        { game: 'destiny', itemHash: 2245431200 },
+        { game: 'destiny', itemHash: 2245431201 },
+        { game: 'destiny', itemHash: 2245431202 },
+        { game: 'destiny', itemHash: 2245431203 },
+        { game: 'destiny', itemHash: 2245431204 },
+        { game: 'destiny', itemHash: 2245431205 },
+        { game: 'destiny', itemHash: 2245431206 },
+        { game: 'destiny', itemHash: 2245431207 },
+        { game: 'destiny', itemHash: 2245431210 },
+        { game: 'destiny', itemHash: 2245431211 },
+        { game: 'destiny', itemHash: 2511884019 },
+        { game: 'destiny', itemHash: 2615360546 },
+        { game: 'destiny', itemHash: 2695084041 },
+        { game: 'destiny', itemHash: 2704512801 },
+        { game: 'destiny', itemHash: 3011919237 },
+        { game: 'destiny', itemHash: 3043619338 },
+        { game: 'destiny', itemHash: 3043619339 },
+        { game: 'destiny', itemHash: 3206937312 },
+        { game: 'destiny', itemHash: 3362576764 },
+        { game: 'destiny', itemHash: 3458901840 },
+        { game: 'destiny', itemHash: 3458901841 },
+        { game: 'destiny', itemHash: 3524149558 },
+        { game: 'destiny', itemHash: 3598189791 },
+        { game: 'destiny', itemHash: 3644912838 },
+        { game: 'destiny', itemHash: 3808257329 },
+        { game: 'destiny', itemHash: 3808257330 },
+        { game: 'destiny', itemHash: 3808257331 },
+        { game: 'destiny', itemHash: 3926270234 },
+        { game: 'destiny', itemHash: 3926270235 },
+        { game: 'destiny', itemHash: 4043575177 },
+        { game: 'destiny', itemHash: 4159905410 },
+        { game: 'destiny', itemHash: 397406333 },
+        { game: 'destiny', itemHash: 446962952 },
+        { game: 'destiny', itemHash: 446962953 },
+        { game: 'destiny', itemHash: 446962954 },
+        { game: 'destiny', itemHash: 446962955 },
+        { game: 'destiny', itemHash: 446962958 },
+        { game: 'destiny', itemHash: 671526060 },
+        { game: 'destiny', itemHash: 671526061 },
+        { game: 'destiny', itemHash: 691757822 },
+        { game: 'destiny', itemHash: 885685675 },
+        { game: 'destiny', itemHash: 923499578 },
+        { game: 'destiny', itemHash: 923499579 },
+        { game: 'destiny', itemHash: 976743008 },
+        { game: 'destiny', itemHash: 1096884848 },
+        { game: 'destiny', itemHash: 1096884849 },
+        { game: 'destiny', itemHash: 1096884850 },
+        { game: 'destiny', itemHash: 1096884851 },
+        { game: 'destiny', itemHash: 1096884852 },
+        { game: 'destiny', itemHash: 1096884853 },
+        { game: 'destiny', itemHash: 1096884854 },
+        { game: 'destiny', itemHash: 1096884855 },
+        { game: 'destiny', itemHash: 1096884860 },
+        { game: 'destiny', itemHash: 1096884861 },
+        { game: 'destiny', itemHash: 1388583990 },
+        { game: 'destiny', itemHash: 1388583991 },
+        { game: 'destiny', itemHash: 1539265118 },
+        { game: 'destiny', itemHash: 1609120940 },
+        { game: 'destiny', itemHash: 1609120941 },
+        { game: 'destiny', itemHash: 1855911072 },
+
+        { game: 'destiny2', itemHash: 2503134037 },
+        { game: 'destiny2', itemHash: 838210459 },
+        { game: 'destiny2', itemHash: 4209989368 },
+        { game: 'destiny2', itemHash: 96858972 },
+        { game: 'destiny2', itemHash: 3213307847 },
+        { game: 'destiny2', itemHash: 1104161649 },
+        { game: 'destiny2', itemHash: 2503134032 },
+        { game: 'destiny2', itemHash: 2503134038 },
+        { game: 'destiny2', itemHash: 2503134039 },
+        { game: 'destiny2', itemHash: 2503134036 },
+        { game: 'destiny2', itemHash: 2503134042 },
+        { game: 'destiny2', itemHash: 838210457 },
+        { game: 'destiny2', itemHash: 838210456 },
+        { game: 'destiny2', itemHash: 4209989372 },
+        { game: 'destiny2', itemHash: 4209989373 },
+        { game: 'destiny2', itemHash: 4209989370 },
+        { game: 'destiny2', itemHash: 4209989371 },
+        { game: 'destiny2', itemHash: 4209989369 },
+        { game: 'destiny2', itemHash: 4209989366 },
+        { game: 'destiny2', itemHash: 96858973 },
+        { game: 'destiny2', itemHash: 4209989367 },
+        { game: 'destiny2', itemHash: 3213307843 },
+        { game: 'destiny2', itemHash: 3213307842 },
+        { game: 'destiny2', itemHash: 3213307845 },
+        { game: 'destiny2', itemHash: 3213307844 },
+        { game: 'destiny2', itemHash: 3213307846 },
+        { game: 'destiny2', itemHash: 3213307849 },
+        { game: 'destiny2', itemHash: 3213307848 }
+      ];
+      for (var i = 0; i < 9; i++) {
+        var index = Math.floor(Math.random() * ships.length);
+        var ship = ships.splice(index, 1)[0];
+        var entityEl = document.createElement('a-entity');
+        entityEl.setAttribute('destiny-model', {
+          game: ship.game,
+          itemHash: ship.itemHash
+        });
+        entityEl.setAttribute('class', 'destiny-model');
+        entityEl.setAttribute('dynamic-body', {
+          shape: 'auto'
+        });
+        entityEl.setAttribute('sleepy', {});
+        var position = { x: 0, y: 0, z: 0 };
+        switch (i % 3) {
+          case 0:
+            position.x = -.33;
+            break;
+          case 1:
+            position.x = 0;
+            break;
+          case 2:
+            position.x = .33;
+            break;
+        }
+        switch (Math.floor(i / 3)) {
+          case 0:
+            position.z = -.42;
+            break;
+          case 1:
+            position.z = -.75;
+            break;
+          case 2:
+            position.z = -1.08;
+            break;
+        }
+        entityEl.setAttribute('position', {
+          x: position.x,
+          y: 1.1,
+          z: position.z
+        });
+        entityEl.setAttribute('scale', {
+          x: .015,
+          y: .015,
+          z: .015
+        })
+        
+        sceneEl.appendChild(entityEl);
+      }
+    </script>
+  </body>
+</html>

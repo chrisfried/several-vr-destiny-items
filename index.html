@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Several Destiny Guns</title>
+    <meta name="description" content="Several Destiny Guns">
+    <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@^v3.12.x/dist/aframe-extras.min.js" data-angle="aframe-extras"></script>    
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script>
+      window.DESTINYMODELCONFIG = {
+        d1Manifest: 'https://lowlidev.com.au/destiny/api/gearasset/$itemHash',
+        d2Manifest: 'https://lowlidev.com.au/destiny/api/gearasset/$itemHash?destiny2'
+      }
+      switch (window.location.hostname) {
+        case 'dev.guardian.theater':
+          window.DESTINYMODELCONFIG.apiKey = '4da0bc9d76774c5696ea2703b129a2cd';
+          break;
+        case 'chrisfried.github.io':
+          window.DESTINYMODELCONFIG.apiKey = '83c21174d7ed4292884fed250a383fee';
+          break;
+        default:
+          window.DESTINYMODELCONFIG.apiKey = '';
+      }
+    </script>
+    <script src="https://unpkg.com/aframe-destiny-model-component@^1.0.x/dist/aframe-destiny-model-component.min.js" data-angle="aframe-destiny-model-component"></script>      
+    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>    
+  </head>
+  <body>
+    <a-scene shadow="type: pcfsoft" environment="preset: forest; lighting: none;">
+      <!-- Background sky. -->
+      <!-- <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky> -->
+
+      <!-- Ground. -->
+      <a-plane static-body rotation="-90 0 0" position="0 -.1 0" height="64" width="64"></a-plane>
+
+      <!--Tracked controls. -->
+      <a-entity physics-collider static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .destiny-model" grab hand-controls="left"></a-entity>
+      <a-entity physics-collider static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .destiny-model" grab hand-controls="right"></a-entity>
+      
+      <a-entity light="type: ambient; color: #BBB"></a-entity>
+      <!-- <a-entity light="type: directional; intensity: .4; shadowCameraFar: 9.3; shadowCameraRight: 5.19; shadowCameraLeft: -5.7299999999999995; shadowCameraBottom: -4.21; shadowCameraTop: 5.68; shadowCameraNear: -1.78; shadowCameraFov: 90.57; castShadow: true;" position="-0.5 1 1"></a-entity>       -->
+
+    </a-scene>
+    <script>
+      var sceneEl = document.querySelector('a-scene');
+      var guns = [
+        // { game: 'destiny', itemHash: 255654879 },
+        // { game: 'destiny', itemHash: 2055601060 },
+        // { game: 'destiny', itemHash: 2055601061 },
+        // { game: 'destiny', itemHash: 2055601062 },
+        // { game: 'destiny', itemHash: 987423912 },
+        // { game: 'destiny', itemHash: 3164616405 },
+        // { game: 'destiny', itemHash: 3164616407 },
+        // { game: 'destiny', itemHash: 4097026463 },
+        // { game: 'destiny', itemHash: 1177550374 },
+        // { game: 'destiny', itemHash: 1177550375 },
+        // { game: 'destiny', itemHash: 3688594188 },
+        // { game: 'destiny', itemHash: 3688594189 },
+
+        // { game: 'destiny', itemHash: 2748609458 },
+        // { game: 'destiny', itemHash: 3490486525 },
+        // { game: 'destiny', itemHash: 3904467563 },
+        // { game: 'destiny', itemHash: 1758882169 },
+        // { game: 'destiny', itemHash: 3742521821 },
+        // { game: 'destiny', itemHash: 2228467481 },
+        // { game: 'destiny', itemHash: 2512322824 },
+        // { game: 'destiny', itemHash: 1288233773 },
+        // { game: 'destiny', itemHash: 3307602312 },
+        // { game: 'destiny', itemHash: 1620583065 },
+        // { game: 'destiny', itemHash: 552354419 },
+        // { game: 'destiny', itemHash: 803312564 },
+
+        // { game: 'destiny', itemHash: 3563445476 },
+        // { game: 'destiny', itemHash: 3139712529 },
+        // { game: 'destiny', itemHash: 4186638508 },
+        // { game: 'destiny', itemHash: 3284317805 },
+        // { game: 'destiny', itemHash: 1344441638 },
+        // { game: 'destiny', itemHash: 690024325 },
+        // { game: 'destiny', itemHash: 162993472 },
+        // { game: 'destiny', itemHash: 547597837 },
+        // { game: 'destiny', itemHash: 1665465325 },
+        // { game: 'destiny', itemHash: 2706628142 },
+        // { game: 'destiny', itemHash: 4274184111 },
+        // { game: 'destiny', itemHash: 46152726 },
+
+        { game: 'destiny', itemHash: 2191224114 },
+        { game: 'destiny', itemHash: 3206937312 },
+        { game: 'destiny', itemHash: 4043575177 },
+        { game: 'destiny', itemHash: 2171840884 },
+        { game: 'destiny', itemHash: 885685675 },
+        { game: 'destiny', itemHash: 923499579 },
+        { game: 'destiny', itemHash: 3926270235 },
+        { game: 'destiny', itemHash: 446962955 },
+        { game: 'destiny', itemHash: 446962954 },
+      ];
+      for (var i = 0; i < 9; i++) {
+        var index = Math.floor(Math.random() * guns.length);
+        var gun = guns.splice(index, 1)[0];
+        var entityEl = document.createElement('a-entity');
+        entityEl.setAttribute('destiny-model', {
+          game: gun.game,
+          itemHash: gun.itemHash
+        });
+        entityEl.setAttribute('class', 'destiny-model');
+        entityEl.setAttribute('dynamic-body', {
+          shape: 'auto'
+        });
+        // entityEl.setAttribute('static-body', {
+        //   shape: 'auto'
+        // });
+        entityEl.setAttribute('shadow', {});
+        entityEl.setAttribute('sleepy', {});
+        entityEl.setAttribute('position', {
+          x: (Math.random() * 3) - 1.5,
+          y: (Math.random() * 1) + 1,
+          z: (Math.random() * 3) - 1.5
+        });
+        entityEl.setAttribute('scale', {
+          x: .01,
+          y: .01,
+          z: .01
+        })
+        
+        sceneEl.appendChild(entityEl);
+      }
+    </script>
+  </body>
+</html>
