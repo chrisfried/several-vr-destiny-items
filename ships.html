@@ -140,6 +140,54 @@
         { game: 'destiny2', itemHash: 3213307849 },
         { game: 'destiny2', itemHash: 3213307848 }
       ];
+      var shaders = [
+        3205869472,
+        3205869473,
+        3205869474,
+        3205869475,
+        3205869476,
+        3205869477,
+        3205869478,
+        3205869479,
+        3205869484,
+        3205869485,
+        16277432,
+        16277433,
+        864505614,
+        864505615,
+        1284563760,
+        1284563761,
+        1284563762,
+        1284563763,
+        1284563764,
+        1284563765,
+        1284563766,
+        1284563767,
+        1284563774,
+        1284563775,
+        1422712818,
+        1422712819,
+
+        2307426896,
+        2307426898,
+        2737886288,
+        2737886290,
+        3875413893,
+        4006192308,
+        4006192310,
+        4006192311,
+        223308216,
+        346878928,
+        346878930,
+        700322568,
+        700322570,
+        1045633725,
+        1045633727,
+        1206746476,
+        1206746478,
+        1841451177,
+        1841451179
+      ]
       for (var i = 0; i < 9; i++) {
         var index = Math.floor(Math.random() * ships.length);
         var ship = ships.splice(index, 1)[0];
@@ -148,6 +196,13 @@
           game: ship.game,
           itemHash: ship.itemHash
         });
+        if (ship.game === 'destiny2') {
+          var shaderHash = shaders[Math.floor(Math.random() * shaders.length)];
+          console.log(ship.itemHash, shaderHash)
+          entityEl.setAttribute('destiny-model', {
+            shaderHash: shaderHash
+          })
+        }
         entityEl.setAttribute('class', 'destiny-model');
         entityEl.setAttribute('dynamic-body', {
           shape: 'auto'
